@@ -100,6 +100,9 @@ alldir	= burn \
 		cpu/z180 \
 		dep/scripts \
 		dep/generated \
+		dep/misc \
+		dep/misc/avir-master \
+		dep/libs/zlib \
 		sdl-dingux
 
 incdir	= $(foreach dir,$(alldir),-I$(srcdir)$(dir)) -I$(objdir)dep/generated
@@ -366,12 +369,12 @@ ifdef DEBUG
 	CFLAGS		+= -g
 	CXXFLAGS	+= -g
 else
-	LDFLAGS		+= -s
+	LDFLAGS		+= -s -static -L/opt/gcw0-toolchain/sysroot/usr/lib
 endif
 
 CFLAGS += $(DEF) $(incdir)
 CXXFLAGS += $(DEF) $(incdir)
-LDFLAGS +=
+LDFLAGS += 
 ASFLAGS = -I$(incdir) -O1 -G0
 
 #

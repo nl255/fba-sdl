@@ -26,6 +26,7 @@
 #include "sdl_input.h"
 
 #define COLORMIX(a, b) ( ((((a & 0xF81F) + (b & 0xF81F)) >> 1) & 0xF81F) | ((((a & 0x07E0) + (b & 0x07E0)) >> 1) & 0x07E0) )
+#undef SDL_TRIPLEBUF
 
 int VideoBufferWidth = 0;
 int VideoBufferHeight = 0;
@@ -1853,7 +1854,7 @@ int VideoInit()
 	// Initialize SDL
 	int flags = (options.vsync ? (SDL_HWSURFACE |
 #ifdef SDL_TRIPLEBUF
-		SDL_TRIPLEBUF
+		SDL_DOUBLEBUF
 #else
 		SDL_DOUBLEBUF
 #endif
@@ -1881,9 +1882,9 @@ int VideoInit()
 		}
 
 		if (options.rotate == 1 || options.rotate == 3) {
-			screen = SDL_SetVideoMode(VideoBufferHeight, VideoBufferWidth, 16, SDL_HWSURFACE | SDL_TRIPLEBUF);
+			screen = SDL_SetVideoMode(VideoBufferHeight, VideoBufferWidth, 16, SDL_HWSURFACE | SDL_DOUBLEBUF);
 		} else {
-			screen = SDL_SetVideoMode(VideoBufferWidth, VideoBufferHeight, 16, SDL_HWSURFACE | SDL_TRIPLEBUF);
+			screen = SDL_SetVideoMode(VideoBufferWidth, VideoBufferHeight, 16, SDL_HWSURFACE | SDL_DOUBLEBUF);
 		}
 
 	} else {

@@ -26,6 +26,7 @@
 #include <fstream>
 #include <avir.h>
 #include <png++/png.hpp>
+#include <unistd.h>
 
 #include "version.h"
 #include "burner.h"
