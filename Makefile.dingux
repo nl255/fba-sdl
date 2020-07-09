@@ -100,11 +100,13 @@ alldir	= burn \
 		cpu/z180 \
 		dep/scripts \
 		dep/generated \
+		dep/misc \
+		dep/misc/avir-master \
 		sdl-dingux
 
 incdir	= $(foreach dir,$(alldir),-I$(srcdir)$(dir)) -I$(objdir)dep/generated
 
-lib = -lstdc++ -lSDL -lSDL_image -lz -lpng
+lib = -lstdc++ -lSDL -lSDL_image -lz -lpng14
 
 ifdef USE_LIBAO
 	lib += -lao
@@ -371,7 +373,7 @@ endif
 
 CFLAGS += $(DEF) $(incdir)
 CXXFLAGS += $(DEF) $(incdir)
-LDFLAGS +=
+LDFLAGS += 
 ASFLAGS = -I$(incdir) -O1 -G0
 
 #
